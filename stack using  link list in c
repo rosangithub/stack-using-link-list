@@ -1,0 +1,96 @@
+#include<stdio.h>
+#include<stdlib.h>
+void push(int);
+void pop();
+void display();
+struct node
+{
+    int info;
+    struct node*next;
+};
+struct node*head=NULL;
+int main()
+{
+    int data,choice;
+    while(1){
+
+
+    printf("enter 1 for push :\n");
+    printf("enter 2 for pop :\n");
+    printf("enter 3 for display :\n");
+    printf("enter 4 for exit :\n");
+    printf("enter  your choice\n");
+    scanf("%d",&choice);
+    switch(choice)
+    {
+
+    case 1:
+        printf("enter the data\n");
+        scanf("%d",&data);
+        push(data);
+        break;
+
+    case 2:
+        pop();
+        break;
+    case 3:
+      display();
+        break;
+    case 4:
+        exit(0);
+    default:
+        printf(" your choice is wrong..\n");
+    }
+    }
+      return 0;
+
+}
+void push(int data)
+{
+    struct node*newnode;
+    newnode=(struct node*)malloc(sizeof(struct node));
+    if(newnode==NULL)
+    {
+        printf("node creation fail\n");
+        exit(0);
+    }
+    newnode->info=data;
+    newnode->next=head;
+    head=newnode;
+    printf("node is created and the data is added in the node\n");
+}
+void pop()
+{
+    struct node *ptr=head;
+    if(head==NULL)
+    {
+        printf("the link is empty\n");
+        exit(0);
+    }
+    else
+    {
+        head=head->next;
+        printf("%d is the pop data",ptr->info);
+        free(ptr);
+    }
+}
+void display()
+{
+    int i;
+    struct node*ptr=head;
+    if(head==NULL)
+    {
+        printf("the list is empty\n");
+        exit(0);
+    }
+    else
+    {
+        printf("the item of the link list are as follows\n");
+         while(ptr!=NULL)
+        {
+
+       printf("%d\n",ptr->info);
+       ptr=ptr->next;
+       }
+    }
+}
